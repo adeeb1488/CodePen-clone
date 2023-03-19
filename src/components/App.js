@@ -1,12 +1,29 @@
 import Editor from "./Editor";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import '../index.css'
 function App() {
   
   const [html, setHtml] = useState(``)
   const [js, setJS] = useState(``)
   const [css, setCss] = useState(``)
-  
+  const [srcDoc, setSrcDoc] = useState(``)
+
+  useEffect(()=>{
+    const timeout = setTimeout(()=>{
+      setSrcDoc(
+        `
+        <html>
+        <body>${html}</body>
+        <style>${css}</style>
+        <script>${js}</script>
+        </html>
+        `
+      )
+    },250)
+
+    return ()=> clearTimeout(timeout)
+  }, [html,css,js])
+
   return(
     <>
     <div className="pane top-pane">
@@ -28,7 +45,9 @@ function App() {
     </div>
    
     <div className="pane">
-      <iframe title="output"
+      <iframe 
+      srcDoc={srcDoc}
+      title="output"
       sandbox="allow-scripts"
       frameBorder="0"
       width="100%"
