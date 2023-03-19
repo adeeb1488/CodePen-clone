@@ -1,5 +1,6 @@
 import Editor from "./Editor";
 import { useState } from "react";
+import '../index.css'
 function App() {
   
   const [html, setHtml] = useState(``)
@@ -8,7 +9,7 @@ function App() {
   
   return(
     <>
-    <div className="pane top-pane"></div>
+    <div className="pane top-pane">
     <Editor language="xml" 
     displayName="HTML" 
     value={html} 
@@ -24,6 +25,8 @@ function App() {
     value={js} 
     onChange={setJS} 
     />
+    </div>
+   
     <div className="pane">
       <iframe title="output"
       sandbox="allow-scripts"

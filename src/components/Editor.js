@@ -31,6 +31,7 @@ function Editor(props){
             lint:true,
             mode:language,
             lineNumbers:true,
+            
         }}
         />
     
